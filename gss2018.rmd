@@ -1,7 +1,7 @@
 ---
 title: "General Social Survey"
-author: "Your Name"
-date: "Year 2019"
+author: "Briggette Adams"
+date: "November 06, 2019"
 output: 
   html_document:
     number_sections: true
@@ -42,6 +42,12 @@ This data is from the 2018 General Social Survey. The first blocks of R-code has
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
+In this survey our two variables are the death penalty and gun ownership which are catagorical variables.The methods are a bar chart for our graphical results, xtab for numerical and a chisquare test for our inferential   
+
+$H_0$ "There is no relationship between the opinion on the death penalty and gun onwership"
+
+$H_A$ "There is a relationship between the opinion on the death penalty and gun ownership"
+
 
 ##Results
 
@@ -53,13 +59,34 @@ This data is from the 2018 General Social Survey. The first blocks of R-code has
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+barchartGC(~CAPPUN+OWNGUN,data=mydata4,type="percent",xlab="capital punishment",main="capital punishment vs gun ownership")
+```
+
+
+The chart shows if you favor capital punishment it does not matter if you own a gun. However those who oppose capital punishment show they are less likely to own a gun. 
+
 #### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+tab1 = xtabs(formula = ~CAPPUN+OWNGUN,data=mydata4)
+rowPerc(tab1)
+```
+
+With the data shown there is a small percentage of difference between those who do and do not own a gun who favor capital punishment. Those who oppose capital punishment have a 70.97 percent against owning a gun, compared to the 29.03 percent of those who do own a gun that still oppose capital punishment. 
+
 ### Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisqtestGC(tab1)
+```
+Our p value is equal to 0.0202 which is less than 0.05 so we reject the null hypothesis. $H_0$ "There is no relationship between the opinion on the death penalty and gun onwership".
+Since we reject the null hypothesesis we show there is a relationship between the opinion on the death penalty and gun ownership.The bar chart shows how those who favor the death penalty are close in percent regardless to owning or not owning a gun. The bar chart also shows how those who oppose the death penalty are more likely to not own a gun than those who do. This shows that there is a relationship between the death penalty and gun ownership.
 
 # Introduction Question 2
 
@@ -67,9 +94,16 @@ This data is from the 2018 General Social Survey. The first blocks of R-code has
 
 Now answer Is belief in the bigbang theory (BIGBANG) independent of belief in the afterlife (POSTLIFE)
 
+
+
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
+In this survey our two variables are the bigbang theory and afterlife which are catagorical variables.The methods are a bar chart for our graphical results, xtab for numerical and a chisquare test for our inferential
+
+$H_0$ "There is no relationship in the belief of the bigbang theory and the afterlife"
+
+$H_A$ "There is a relationship in the belief of the bigbang theory and the afterlife"
 
 ##Results
 
@@ -81,13 +115,32 @@ Now answer Is belief in the bigbang theory (BIGBANG) independent of belief in th
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+barchartGC(~BIGBANG+POSTLIFE,data=mydata4,type="percent",xlab="BIGBANG",main="BIGBANG THEORY VS AFTERLIFE")
+```
+
+
+The barchart shows how regardless of belief in the Bigbang theory people believe in the afterlife.  
+
 #### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+Tab2=xtabs(formula= ~BIGBANG+POSTLIFE,data= mydata4)
+rowPerc(Tab2)
+```
+
+With the results from the data there is a 81.71 percent of those who belive in the bigbang theory and also in the afterlife. There is a 91.67 percent of those who do not believe in the bigbang theory that also do believe in the afterlife.This shows there is no relationship between the belief in the bigbang theory and the afterlife.  
 ### Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+chisqtestGC(Tab2)
+```
+Our p value is equal to 0.0801 which is greater than 0.05 therefore we fail to reject the null hypothesis."There is no relationship in the belief of the bigbang theory and the afterlife" Thus there is no relationship between the belief of the bigbang theory and the afterlife. The barchart shows that regardless of the belief of the bigbang theory the majority believe in the afterlife. With the results from the data there is a 81.71 percent of those who belive in the bigbang theory and also in the afterlife. There is a 91.67 percent of those who do not believe in the bigbang theory that also do believe in the afterlife.This shows there is no relationship between the belief in the bigbang theory and the afterlife. 
+
 
 # Introduction Question 3
 
@@ -99,26 +152,50 @@ Finally determine if a persons opinion on death penalty (CAPPUN) is independent 
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
+In this survey our two variables are the death penalty and race which are catagorical variables.The methods are a bar chart for our graphical results, xtab for numerical and a chisquare test for our inferential
+
+$H_0$ "There is no relationship between the opinion of the death penalty and race"
+
+$H_A$ "There is a relationship between the opinion of the death penalty and race"
+
 ##Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 ### Descriptive Results
 
-#### Graphical Descriptive Results
 
+#### Graphical Descriptive Results
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
-#### Numerical Descriptive Results
+```{r}
+barchartGC(~CAPPUN+RACE,data= mydata4,type="percent", xlab= "CAPITAL PUNISHMENT", main ="Capital punishment vs Race")
 
+```
+
+The barchart shows if you are white or other you favor capital punishment and if you are black you oppose capital punishment.
+
+
+#### Numerical Descriptive Results
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+Tab3=xtabs(formula= ~CAPPUN+RACE,data=mydata4)
+rowPerc(Tab3)
+```
+According to our data those who are white favor capital punishment by 79.31 percent com0ared to whites who oppose at 67.74. Thos who are black tend to favor opposing capital ounishment by 27.42 percent over the 7.76 that favor capital punishment. The other category favors capital punishment by 12.93 compared to 4.84 who oppose capital punishment. This data shows that whites and other favor capital punishment while blacks oppose capital punishment.
 
 ### Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
+```{r}
+chisqtestGC(Tab3)
+```
+With our p value equaling 9e-04 which is less than 0.05 therefore we reject our null hypothesis. "There is no relationship between the opinion of the death penalty and race" Thus There is a relationship between the opinion of the death penalty and race. The barchart shows that the mojority of those who are in favor of the death penalty are white and other races. While blacks are opposed to the death penalty. According to our data those who are white favor capital punishment by 79.31 percent compared to whites who oppose at 67.74. Those who are black tend to favor opposing capital punishment by 27.42 percent over the 7.76 that favor capital punishment. The other category favors capital punishment by 12.93 compared to 4.84 who oppose capital punishment. This data shows that whites and other favor capital punishment while blacks oppose capital punishment.
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
+In questions one and three there is a relationship between our variables. While in question two there is no relationship between our variables. These are further supported by our p values and our inferential results for the questions above.
